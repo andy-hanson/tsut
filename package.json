@@ -1,0 +1,49 @@
+{
+	"name": "tsut",
+	"version": "0.0.0",
+	"description": "Utilities for TypeScript",
+	"keywords": [
+		"utilities"
+	],
+	"license": "Unlicense",
+	"types": "bin/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/andy-hanson/tsut"
+	},
+	"scripts": {
+		"all": "npm-run-all clean build test lint doc line-count coverage",
+		"clean": "rm -rf bin coverage doc tslint-bin",
+		"build": "tsc -p src",
+		"doc": "typedoc src --out doc --target es6",
+		"test": "mocha --require test/mocha-require.js test/*.ts",
+		"coverage": "npm-run-all build-test run-test-coverage",
+			"build-test": "tsc -p test",
+			"run-test-coverage": "istanbul cover _mocha -- test-bin/test/*.js",
+		"ci": "npm-run-all coverage just-codecov",
+			"just-codecov": "codecov",
+		"lint": "npm-run-all lint-build lint-run",
+			"lint-build": "tsc -p tslint",
+			"lint-run": "tslint --format stylish examples/*.ts src/*.ts test/*.ts tslint/*.ts",
+		"line-count": "node examples/require lineCount"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.32",
+		"@types/node": "^6.0.41",
+		"codecov": "^1.0.1",
+		"istanbul": "1.1.0-alpha.1",
+		"mocha": "^3.1.2",
+		"npm-run-all": "^3.1.0",
+		"ts-node": "^1.4.1",
+		"tslint": "4.0.0-dev.0",
+		"typedoc": "^0.5.0",
+		"typescript": "2.0.3"
+	},
+	"files": [
+		"bin"
+	],
+	"main": "bin/index.js",
+	"engines": {
+		"node": ">=6.0.0"
+	}
+}
