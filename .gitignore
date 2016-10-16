@@ -1,7 +1,6 @@
 .alm
 bin
 coverage
-doc
 node_modules
 test-bin
 tslint-bin
