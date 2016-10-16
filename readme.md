@@ -62,7 +62,7 @@ Other modules are:
 | `shims` | ES-next shims. |
 | `builder` | Builders for data structures. Used internally by `seq` and `asyncSeq`. |
 
-Documentation is [here]().
+Documentation is [here](http://andy-hanson.me/tsut/doc/index.html).
 If that's not enough, the source code is readable, so you can [dive in](https://github.com/andy-hanson/tsut/blob/master/src/option.ts).
 
 
