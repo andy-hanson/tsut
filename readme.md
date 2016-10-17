@@ -39,32 +39,31 @@ The main modules are:
 
 | Module | For |
 | ------ | --- |
-| `option` | For using `Option`s (`Option<T> = T | undefined`) |
-| `function` | Common higher-order functions. |
-| `seq` | For using `Iterable`s. |
-| `asyncSeq` | For using `AsyncIterable`s. |
-| `parallel` | Like `asyncSeq` but runs operations in parallel. |
-| `async` | For using `Promise`s and async functions. |
-| `array` | Array helpers. |
-| `string` | For using `String`s. |
-| `map` | For using `Map`s. |
-| `set` | For using `Set`s.
+| [`option`](http://andy-hanson.me/tsut/doc/modules/_option_.html) | For using `Option`s (`Option<T> = T | undefined`) |
+| [`function`](http://andy-hanson.me/tsut/doc/modules/_function_.html) | Common higher-order functions. |
+| [`seq`](http://andy-hanson.me/tsut/doc/modules/_seq_.html) | For using `Iterable`s. |
+| [`asyncSeq`](http://andy-hanson.me/tsut/doc/modules/_asyncseq_.html) | For using `AsyncIterable`s. |
+| [`parallel`](http://andy-hanson.me/tsut/doc/classes/_parallel_.parallelseq.html) | Like `asyncSeq` but runs operations in parallel. |
+| [`async`](http://andy-hanson.me/tsut/doc/modules/_async_.html) | For using `Promise`s and async functions. |
+| [`array`](http://andy-hanson.me/tsut/doc/modules/_array_.html) | Array helpers. |
+| [`string`](http://andy-hanson.me/tsut/doc/modules/_string_.html) | For using `String`s. |
+| [`map`](http://andy-hanson.me/tsut/doc/modules/_map_.html) | For using `Map`s. |
+| [`set`](http://andy-hanson.me/tsut/doc/modules/_set_.html) | For using `Set`s.
 
 Other modules are:
 
 | Module | For |
 | ------ | --- |
-| `misc` | Other useful functions. |
-| `math` | For using `number`s. |
-| `range` | Ranges of numbers. |
-| `tuple` | For using tuples. |
-| `types` | Easier `typeof` tests. |
-| `reflect` | Common `Proxy`s. |
-| `shims` | ES-next shims. |
-| `builder` | Builders for data structures. Used internally by `seq` and `asyncSeq`. |
+| [`misc`](http://andy-hanson.me/tsut/doc/modules/_misc_.html) | Other useful functions. |
+| [`math`](http://andy-hanson.me/tsut/doc/modules/_math_.html) | For using `number`s. |
+| [`range`](http://andy-hanson.me/tsut/doc/modules/_range_.html) | Ranges of numbers. |
+| [`tuple`](http://andy-hanson.me/tsut/doc/modules/_tuple_.html) | For using tuples. |
+| [`types`](http://andy-hanson.me/tsut/doc/modules/_types_.html) | Easier `typeof` tests. |
+| [`reflect`](http://andy-hanson.me/tsut/doc/modules/_reflect_.html) | Common `Proxy`s. |
+| [`shims`](http://andy-hanson.me/tsut/doc/modules/_shims_.__global.html) | ES-next shims. |
+| [`builder`](http://andy-hanson.me/tsut/doc/modules/_builder_.html) | Builders for data structures. Used internally by `seq` and `asyncSeq`. |
 
-Documentation is [here](http://andy-hanson.me/tsut/doc/index.html).
-If that's not enough, the source code is readable, so you can [dive in](https://github.com/andy-hanson/tsut/blob/master/src/option.ts).
+If you're like me you may prefer to just read the [source code](https://github.com/andy-hanson/tsut/blob/master/src/option.ts).
 
 
 ### Why isn't X included?
