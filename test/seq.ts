@@ -1,5 +1,5 @@
 import { Builder, add, incr, optional, raise } from "../src"
-import { iterableOfIterator, iterContinue, iterDone, Seq, seq } from "../src/seq"
+import { Seq, iterContinue, iterDone, iterableOfIterator, seq } from "../src/seq"
 import { assert, eq, eqStrict, seqEq, throws, tryHalve } from "./test-util"
 
 const nats = Seq.of(0, 1, 2)
@@ -51,7 +51,6 @@ describe("seq", () => {
 		eq(timesComputed, 1)
 	})
 
-	//todo: similar for async
 	it("memoize", () => {
 		let timesYieldedA = 0
 		let timesYieldedB = 0
@@ -305,7 +304,7 @@ describe("seq", () => {
 		eqStrict(iterableOfIterator(iter), iter)
 
 		// Can wrap an iterator in an Iterable.
-		function* f() {
+		function* f(): IterableIterator<number> {
 			let n = 3
 			const myIter = {
 				next: () =>

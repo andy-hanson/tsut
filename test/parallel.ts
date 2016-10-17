@@ -1,5 +1,5 @@
 import { AsyncSeq, ignore, incr, range } from "../src"
-import { assertStepsTaken, asyncEq, asyncNats, eq, sleepAndDo, tryHalve, throws } from "./test-util"
+import { assertStepsTaken, asyncEq, asyncNats, eq, sleepAndDo, throws, tryHalve } from "./test-util"
 
 describe("ParallelOperations", () => {
 	it("nThreads", async () => {

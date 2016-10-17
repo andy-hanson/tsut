@@ -1,4 +1,4 @@
-import { Builder, Seq, add, iterableOfIterator, iterContinue, iterDone, optional, raise } from "../src"
+import { Builder, Seq, add, iterContinue, iterDone, iterableOfIterator, optional, raise } from "../src"
 import { AsyncIterable, AsyncSeq, asyncIterator, getAsyncIterator } from "../src/asyncSeq"
 import { assert, asyncEq, asyncNats, eq, seqEq, sleepAndDo, throws, throwsAsync, tryHalve } from "./test-util"
 

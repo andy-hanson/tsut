@@ -90,16 +90,21 @@ class MyWalker extends Lint.RuleWalker {
 	}
 }
 
-function isExported(node: ts.Node): boolean {
-	return !!(ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export)
+function isExported(_node: ts.Node): boolean {
+	return false
+	// TODO: TypeScript 2.0.5 provides this
+	// return !!(ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export)
 }
 
-function isPublic(node: ts.Node): boolean {
-	return !!(ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Public)
+function isPublic(_node: ts.Node): boolean {
+	return false
+	// return !!(ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Public)
 }
 
-function isDocumented(node: ts.Node): boolean {
-	return (node as any).jsDocComments !== undefined
+function isDocumented(_node: ts.Node): boolean {
+	return true
+	// TODO: TypeScript 2.0.5 provides this
+	// return node.jsDocComments !== undefined
 }
 
 function functionName(node: ts.FunctionDeclaration): string | undefined {

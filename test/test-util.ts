@@ -1,8 +1,9 @@
-/// <reference types="mocha"/>
-/// <reference types="node"/>
+/// <reference types="mocha" />
+/// <reference path="node.d.ts" />
 
 import { AsyncSeq, Awaitable, Fn1, Fn2, Nat, Option, exists, keepIf, optional, sleep } from "../src"
-import * as nodeAssert from "assert"
+import nodeAssert = require("assert")
+import { hrtime } from "process"
 
 declare global {
 	interface ArrayConstructor {
@@ -88,7 +89,7 @@ export async function assertTimeTaken(millis: number, action: () => Promise<void
 }
 
 function currentTimeMillis(): Nat {
-	const [seconds, nanos] = process.hrtime()
+	const [seconds, nanos] = hrtime()
 	return seconds * 1000 + nanos / 1000000
 }
 

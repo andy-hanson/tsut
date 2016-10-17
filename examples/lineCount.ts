@@ -1,3 +1,4 @@
+/// <reference path="node.d.ts" />
 import * as fs from "fs"
 import * as path from "path"
 

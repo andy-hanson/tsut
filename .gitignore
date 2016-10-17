@@ -1,5 +1,4 @@
 .alm
-bin
 coverage
 node_modules
 test-bin

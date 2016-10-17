@@ -12,7 +12,8 @@ but you can use a single import `import * as u from "tsut"` and use any function
 #### Install
 
 ```sh
-npm install --save tsut
+npm install --save andy-hanson/tsut # Latest
+npm install --save tsut # Stable
 ```
 
 #### Configure
