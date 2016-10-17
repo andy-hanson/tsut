@@ -18,7 +18,7 @@ npm install --save tsut # Stable
 
 #### Configure
 
-You must use `"target": "es6"` in your `tsconfig.json`.
+You must use `"target": "es6"` and `"moduleResolution": "node"` (or `"module": "commonjs"`) in your `tsconfig.json`.
 
 #### Import
 
@@ -29,7 +29,7 @@ import * as u from "tsut";
 #### Call
 
 ```ts
-console.log(u.difference([1, 2, 3], [3, 1]))
+console.log(u.difference([1, 2, 3], [3, 1])) // Set { 2 }
 ```
 
 
