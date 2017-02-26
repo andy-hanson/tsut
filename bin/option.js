@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /** Convert a value which may be `null` to one which may be `undefined`. */
 function optionify(nullable) {
     return nullable === null ? undefined : nullable;

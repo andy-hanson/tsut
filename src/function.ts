@@ -129,7 +129,7 @@ export function after<F extends Function>(f: F, doAfter: (res: any) => void): F 
 }
 
 /** Type of memoized functions: the function type with accessible `cache`. */
-export type MemoizedFn<In, Out, F> = F & { cache: WeakMap<In, Out> }
+export type MemoizedFn<In extends object, Out, F> = F & { cache: WeakMap<In, Out> }
 
 /**
 Remembers previous calls to a function and does not recompute on the same inputs twice.
@@ -138,7 +138,7 @@ The Out type must not be possibly `undefined`,
 as that value is used to indicate that the function hasn't been called yet.
 The function type is a type parameter so that intellisense knows the parameter names.
 */
-export function memoize<In, Out, F extends (input: In) => Out>(f: F): MemoizedFn<In, Out, F> {
+export function memoize<In extends object, Out, F extends (input: In) => Out>(f: F): MemoizedFn<In, Out, F> {
 	const cache = new WeakMap<In, Out>()
 
 	const memoized = (input: In): Out => {
@@ -158,10 +158,10 @@ export function memoize<In, Out, F extends (input: In) => Out>(f: F): MemoizedFn
 }
 
 /** Type of memoized functions with 2 arguments. */
-export type MemoizedFn2<A, B, Out, F> = F & { cache: WeakMap<A, WeakMap<B, Out>> }
+export type MemoizedFn2<A extends object, B extends object, Out, F> = F & { cache: WeakMap<A, WeakMap<B, Out>> }
 
 /** [[memoize]] for a function with 2 arguments. */
-export function memoize2<A, B, Out, F extends (a: A, b: B) => Out>(f: F): MemoizedFn2<A, B, Out, F> {
+export function memoize2<A extends object, B extends object, Out, F extends (a: A, b: B) => Out>(f: F): MemoizedFn2<A, B, Out, F> {
 	const aCache = new WeakMap<A, WeakMap<B, Out>>()
 
 	const memoized = (a: A, b: B): Out => {

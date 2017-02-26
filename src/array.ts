@@ -7,7 +7,7 @@ import { Seq } from "./seq"
 Empty immutable array.
 Using this instead of a literal array `[]` to avoid allocating memory.
 */
-export const empty: never[] = Object.freeze([]) as never[] // TODO: Cast not needed in TypeScript 2.0.5
+export const empty: ReadonlyArray<never> = Object.freeze([])
 
 /**
 Replace each element with the result of calling `getNewValue`.
@@ -25,9 +25,9 @@ If `predicate` throws, the array will be left in a bad state.
 */
 export function filterMutate<T>(inputs: T[], predicate: Predicate<T>): void {
 	let writeIndex = 0
-	for (let readIndex = 0; readIndex < inputs.length; readIndex++)
-		if (predicate(inputs[readIndex])) {
-			inputs[writeIndex] = inputs[readIndex]
+	for (const input of inputs)
+		if (predicate(input)) {
+			inputs[writeIndex] = input
 			writeIndex++
 		}
 	inputs.length = writeIndex
@@ -39,8 +39,8 @@ If [[tryGetOutput] throws, the array will be left in a bad state.
 */
 export function mapDefinedMutate<T>(inputs: T[], tryGetOutput: (input: T) => Option<T>): void {
 	let writeIndex = 0
-	for (let readIndex = 0; readIndex < inputs.length; readIndex++) {
-		const output = tryGetOutput(inputs[readIndex])
+	for (const input of inputs) {
+		const output = tryGetOutput(input)
 		if (output !== undefined) {
 			inputs[writeIndex] = output
 			writeIndex++
@@ -97,11 +97,7 @@ Wrapper class for utilities that mutate arrays asynchronously.
 For non-mutating utilities use [[AsyncSeq]].
 */
 export class AsyncArrayOps<T> {
-	constructor(private inputs: T[]) {
-		// https://github.com/Microsoft/TypeScript/issues/11324
-		// tslint:disable-next-line:no-unused-expression
-		this.inputs
-	}
+	constructor(private inputs: T[]) {}
 
 	/** Asynchronous [[mapMutate]]. */
 	async map(getNewValue: (element: T, index: number) => Promise<T>): Promise<void> {
@@ -177,11 +173,11 @@ export class ParallelArrayOps<T> {
 			await awaitOne()
 
 		async function awaitOne(): Promise<void> {
-			inputs[writeIndex] = await (inputs as any as Promise<T>[])[writeIndex]
+			inputs[writeIndex] = await (inputs as any as Array<Promise<T>>)[writeIndex]
 			writeIndex++
 		}
 		function startOne(): void {
-			(inputs as any as Promise<T>[])[readIndex] = mapper(inputs[readIndex], readIndex)
+			(inputs as any as Array<Promise<T>>)[readIndex] = mapper(inputs[readIndex], readIndex)
 			readIndex++
 		}
 	}
@@ -218,7 +214,7 @@ export class ParallelArrayOps<T> {
 		inputs.length = writeOutputIndex
 
 		async function awaitOne(): Promise<void> {
-			const output = await (inputs as any as Promise<Option<T>>[])[readPromiseIndex]
+			const output = await (inputs as any as Array<Promise<Option<T>>>)[readPromiseIndex]
 			readPromiseIndex++
 			if (output !== undefined) {
 				inputs[writeOutputIndex] = output
@@ -227,7 +223,7 @@ export class ParallelArrayOps<T> {
 		}
 
 		function startOne(): void {
-			(inputs as any as Promise<Option<T>>[])[readValueIndex] = tryGetOutput(inputs[readValueIndex], readValueIndex)
+			(inputs as any as Array<Promise<Option<T>>>)[readValueIndex] = tryGetOutput(inputs[readValueIndex], readValueIndex)
 			readValueIndex++
 		}
 	}
@@ -237,18 +233,18 @@ export class ParallelArrayOps<T> {
 Whether a number is an integer between 0 and array.length.
 Does *not* check for whether there is a "hole" at the index.
 */
-export function isValidIndex(inputs: {}[], index: Nat): boolean {
+export function isValidIndex(inputs: Array<{}>, index: Nat): boolean {
 	return isNat(index) && index < inputs.length
 }
 
 /** Throws an error if [[index]] is not a valid index. */
-export function checkIndex(inputs: {}[], index: Nat): void {
+export function checkIndex(inputs: Array<{}>, index: Nat): void {
 	if (!isValidIndex(inputs, index))
 		throw new Error(`Expected an array index < ${inputs.length}, got ${index}`)
 }
 
 /** Swap two values in an array. */
-export function swap(inputs: {}[], firstIndex: Nat, secondIndex: Nat): void {
+export function swap(inputs: Array<{}>, firstIndex: Nat, secondIndex: Nat): void {
 	checkIndex(inputs, firstIndex)
 	checkIndex(inputs, secondIndex)
 	const tmp = inputs[firstIndex]

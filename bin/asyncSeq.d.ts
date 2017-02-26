@@ -118,7 +118,7 @@ export declare class AsyncSeq<T> implements AsyncIterable<T> {
     /** Async [[Seq.flatMap]]. */
     flatMap<U>(mapper: (element: T) => Awaitable<Option<AnyIterable<U>>>): AsyncSeq<U>;
     /** Async [[Seq.concat]]. */
-    concat(...concatWith: Option<AnyIterable<T>>[]): AsyncSeq<T>;
+    concat(...concatWith: Array<Option<AnyIterable<T>>>): AsyncSeq<T>;
     /** Async [[Seq.mapDefined]]. */
     mapDefined<U>(tryGetOutput: (input: T) => Awaitable<Option<U>>): AsyncSeq<U>;
     /** Async [[Seq.getDefined]]. */

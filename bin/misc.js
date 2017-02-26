@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const function_1 = require("./function");
 const option_1 = require("./option");
 /** Used to indicate an expression to be filled in later. */

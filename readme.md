@@ -37,31 +37,31 @@ console.log(u.difference([1, 2, 3], [3, 1])) // Set { 2 }
 
 The main modules are:
 
-| Doc | Source | For |
-| --- | --- | --- |
-| [`option`](http://andy-hanson.me/tsut/doc/modules/_option_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/option.ts) | For using `Option`s (`Option<T> = T | undefined`) |
-| [`function`](http://andy-hanson.me/tsut/doc/modules/_function_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/function.ts) | Common higher-order functions. |
-| [`seq`](http://andy-hanson.me/tsut/doc/modules/_seq_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/seq.ts) | For using `Iterable`s. |
-| [`asyncSeq`](http://andy-hanson.me/tsut/doc/modules/_asyncseq_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/asyncSeq.ts) | For using `AsyncIterable`s. |
-| [`parallel`](http://andy-hanson.me/tsut/doc/classes/_parallel_.parallelseq.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/parallel.ts) | Like `asyncSeq` but runs operations in parallel. |
-| [`async`](http://andy-hanson.me/tsut/doc/modules/_async_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/async.ts) | For using `Promise`s and async functions. |
-| [`array`](http://andy-hanson.me/tsut/doc/modules/_array_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/array.ts) | Array helpers. |
-| [`string`](http://andy-hanson.me/tsut/doc/modules/_string_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/string.ts) | For using `String`s. |
-| [`map`](http://andy-hanson.me/tsut/doc/modules/_map_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/map.ts) | For using `Map`s. |
-| [`set`](http://andy-hanson.me/tsut/doc/modules/_set_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/set.ts) | For using `Set`s.
+| Module | For |
+| --- | --- |
+| [`option`](https://github.com/andy-hanson/tsut/blob/master/src/option.ts) | For using `Option`s (`Option<T> = T | undefined`) |
+| [`function`](https://github.com/andy-hanson/tsut/blob/master/src/function.ts) | Common higher-order functions. |
+| [`seq`](https://github.com/andy-hanson/tsut/blob/master/src/seq.ts) | For using `Iterable`s. |
+| [`asyncSeq`](https://github.com/andy-hanson/tsut/blob/master/src/asyncSeq.ts) | For using `AsyncIterable`s. |
+| [`parallel`](https://github.com/andy-hanson/tsut/blob/master/src/parallel.ts) | Like `asyncSeq` but runs operations in parallel. |
+| [`async`](https://github.com/andy-hanson/tsut/blob/master/src/async.ts) | For using `Promise`s and async functions. |
+| [`array`](https://github.com/andy-hanson/tsut/blob/master/src/array.ts) | Array helpers. |
+| [`string`](https://github.com/andy-hanson/tsut/blob/master/src/string.ts) | For using `String`s. |
+| [`map`](https://github.com/andy-hanson/tsut/blob/master/src/map.ts) | For using `Map`s. |
+| [`set`](https://github.com/andy-hanson/tsut/blob/master/src/set.ts) | For using `Set`s.
 
 Other modules are:
 
 | Doc | Source | For |
 | --- | --- | --- |
-| [`misc`](http://andy-hanson.me/tsut/doc/modules/_misc_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/misc.ts) | Other useful functions. |
-| [`math`](http://andy-hanson.me/tsut/doc/modules/_math_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/math.ts) | For using `number`s. |
-| [`range`](http://andy-hanson.me/tsut/doc/modules/_range_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/range.ts) | Ranges of numbers. |
-| [`tuple`](http://andy-hanson.me/tsut/doc/modules/_tuple_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/tuple.ts) | For using tuples. |
-| [`types`](http://andy-hanson.me/tsut/doc/modules/_types_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/types.ts) | Easier `typeof` tests. |
-| [`reflect`](http://andy-hanson.me/tsut/doc/modules/_reflect_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/reflect.ts) | Common `Proxy`s. |
-| [`shims`](http://andy-hanson.me/tsut/doc/modules/_shims_.__global.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/shims.ts) | ES-next shims. |
-| [`builder`](http://andy-hanson.me/tsut/doc/modules/_builder_.html) | [☺](https://github.com/andy-hanson/tsut/blob/master/src/builder.ts) | Builders for data structures. Used internally by `seq` and `asyncSeq`. |
+| [`misc`](https://github.com/andy-hanson/tsut/blob/master/src/misc.ts) | Other useful functions. |
+| [`math`](https://github.com/andy-hanson/tsut/blob/master/src/math.ts) | For using `number`s. |
+| [`range`](https://github.com/andy-hanson/tsut/blob/master/src/range.ts) | Ranges of numbers. |
+| [`tuple`](https://github.com/andy-hanson/tsut/blob/master/src/tuple.ts) | For using tuples. |
+| [`types`](https://github.com/andy-hanson/tsut/blob/master/src/types.ts) | Easier `typeof` tests. |
+| [`reflect`](https://github.com/andy-hanson/tsut/blob/master/src/reflect.ts) | Common `Proxy`s. |
+| [`shims`](https://github.com/andy-hanson/tsut/blob/master/src/shims.ts) | ES-next shims. |
+| [`builder`](https://github.com/andy-hanson/tsut/blob/master/src/builder.ts) | Builders for data structures. Used internally by `seq` and `asyncSeq`. |
 
 
 ### Why isn't X included?
@@ -71,7 +71,7 @@ Other modules are:
 | Data structures | [typescript-collections](https://github.com/basarat/typescript-collections)
 | Random utilities | [chance](http://chancejs.com/) |
 | Date utilities | [moment](http://momentjs.com/) |
-| More math utilities | I haven't found a good library for this. |
+| More math utilities | [mathjs](http://mathjs.org/) |
 
 
 ### Get Help

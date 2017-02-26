@@ -114,7 +114,7 @@ describe("seq", () => {
 
 	it("groupBy & groupBySeq", () => {
 		const s = Seq.of("ab", "ac", "bb")
-		const out: [string, string[]][] = [["a", ["ab", "ac"]], ["b", ["bb"]]]
+		const out: Array<[string, string[]]> = [["a", ["ab", "ac"]], ["b", ["bb"]]]
 		eq(s.groupBy(str => str[0]), Map.from(out))
 		seqEq(s.groupBySeq(str => str[0]), out)
 	})

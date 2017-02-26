@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("./math");
 const option_1 = require("./option");
 /** Function that does nothing and returns its input. */

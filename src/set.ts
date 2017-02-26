@@ -24,7 +24,7 @@ export function differenceMutate<T>(target: Set<T>, source: Iterable<T>): void {
 }
 
 /** Set containing every element in every argument. */
-export function union<T>(...args: Iterable<T>[]): Set<T> {
+export function union<T>(...args: Array<Iterable<T>>): Set<T> {
 	const s = new Set<T>()
 	for (const arg of args)
 		unionMutate(s, arg)

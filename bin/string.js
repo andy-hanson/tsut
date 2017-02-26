@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("./math");
 /**
 Adds characters to the front until reaching `maxLength`.

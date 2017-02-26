@@ -106,7 +106,7 @@ export declare class Seq<T> implements Iterable<T> {
     Undefined ones will be ignored.
     Equivalent to `seq([this, ...concatWith]).flatten()`.
     */
-    concat(...concatWith: Option<Iterable<T>>[]): Seq<T>;
+    concat(...concatWith: Array<Option<Iterable<T>>>): Seq<T>;
     /**
     `map(tryGetOutput).getDefined()`.
 

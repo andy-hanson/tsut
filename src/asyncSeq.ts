@@ -137,15 +137,15 @@ export class AsyncSeq<T> implements AsyncIterable<T> {
 	static fromPush<T>(pusherUser: (pusher: Pushable<T>) => void): AsyncSeq<T> {
 		return new AsyncSeq<T>(() => {
 			const enum StateKind { Going, Errored, Finished }
-			type State = { kind: StateKind.Going, deferreds: Deferred<IteratorResult<T>>[] } |
+			type State = { kind: StateKind.Going, deferreds: Array<Deferred<IteratorResult<T>>> } |
 				{ kind: StateKind.Errored, error: Error } |
 				{ kind: StateKind.Finished }
 
 			let curState: State = { kind: StateKind.Going, deferreds: [] }
 			// Results that have been pushed that have not yet been pulled.
-			let queued: T[] = []
+			const queued: T[] = []
 
-			function mustBeGoing(newState: StateKind): Deferred<IteratorResult<T>>[] {
+			function mustBeGoing(newState: StateKind): Array<Deferred<IteratorResult<T>>> {
 				if (curState.kind === StateKind.Going)
 					return curState.deferreds
 				else
@@ -385,7 +385,7 @@ export class AsyncSeq<T> implements AsyncIterable<T> {
 	}
 
 	/** Async [[Seq.concat]]. */
-	concat(...concatWith: Option<AnyIterable<T>>[]): AsyncSeq<T> {
+	concat(...concatWith: Array<Option<AnyIterable<T>>>): AsyncSeq<T> {
 		return asyncSeq(concatWith).unshift(this).flatten()
 	}
 

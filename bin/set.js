@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const seq_1 = require("./seq");
 /** Converts an iterable to a Set if it isn't one already. */
 function toSet(values) {

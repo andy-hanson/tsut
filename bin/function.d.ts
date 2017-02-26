@@ -68,7 +68,7 @@ export declare function after<T, U, V>(f: Fn2<T, U, V>, doAfter: Action<V>): Fn2
 export declare function after<T, U, V, W>(f: Fn3<T, U, V, W>, doAfter: Action<W>): Fn3<T, U, V, W>;
 export declare function after<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, doAfter: Action<X>): Fn4<T, U, V, W, X>;
 /** Type of memoized functions: the function type with accessible `cache`. */
-export declare type MemoizedFn<In, Out, F> = F & {
+export declare type MemoizedFn<In extends object, Out, F> = F & {
     cache: WeakMap<In, Out>;
 };
 /**
@@ -78,10 +78,10 @@ The Out type must not be possibly `undefined`,
 as that value is used to indicate that the function hasn't been called yet.
 The function type is a type parameter so that intellisense knows the parameter names.
 */
-export declare function memoize<In, Out, F extends (input: In) => Out>(f: F): MemoizedFn<In, Out, F>;
+export declare function memoize<In extends object, Out, F extends (input: In) => Out>(f: F): MemoizedFn<In, Out, F>;
 /** Type of memoized functions with 2 arguments. */
-export declare type MemoizedFn2<A, B, Out, F> = F & {
+export declare type MemoizedFn2<A extends object, B extends object, Out, F> = F & {
     cache: WeakMap<A, WeakMap<B, Out>>;
 };
 /** [[memoize]] for a function with 2 arguments. */
-export declare function memoize2<A, B, Out, F extends (a: A, b: B) => Out>(f: F): MemoizedFn2<A, B, Out, F>;
+export declare function memoize2<A extends object, B extends object, Out, F extends (a: A, b: B) => Out>(f: F): MemoizedFn2<A, B, Out, F>;

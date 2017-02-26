@@ -12,7 +12,7 @@ declare global {
 
 	interface MapConstructor {
 		/** Map containing the given entries. */
-		of<K, V>(...values: [K, V][]): Map<K, V>
+		of<K, V>(...values: Array<[K, V]>): Map<K, V>
 		/** Map containing the given entries. */
 		from<K, V>(values: Iterable<[K, V]>): Map<K, V>
 	}
@@ -27,7 +27,7 @@ if (Set.from === undefined) {
 }
 
 if (Map.of === undefined) {
-	Map.of = <K, V>(...values: [K, V][]) => new Map(values)
+	Map.of = <K, V>(...values: Array<[K, V]>) => new Map(values)
 }
 
 if (Map.from === undefined) {

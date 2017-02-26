@@ -1,17 +1,17 @@
 {
 	"extends": "tslint:latest",
-	"rulesDirectory": [
-		"tslint-bin"
-	],
 	"rules": {
-		"export-documentation": true,
+		"completed-docs": false, // https://github.com/palantir/tslint/pull/2230
 
-		"only-arrow-functions": false,
+		"ordered-imports": [true, {"named-imports-order": "lowercase-last"}],
+		"prefer-for-of": false, // waiting on next release: https://github.com/palantir/tslint/pull/1813
 
+		"arrow-parens": false,
 		"curly": false,
 		"indent": [true, "tabs"],
 		"interface-name": false,
 		"jsdoc-format": false,
+		"max-classes-per-file": false,
 		"max-line-length": false,
 		"member-access": false,
 		"no-bitwise": false,

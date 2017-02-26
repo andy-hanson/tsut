@@ -2,11 +2,12 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const asyncSeq_1 = require("./asyncSeq");
 const math_1 = require("./math");
 const option_1 = require("./option");
@@ -57,12 +58,12 @@ class ParallelSeq {
                 if (!option_1.exists(threads)) {
                     // First iteration
                     // Grab the first value to be yielded before starting any threads.
-                    const { value, done } = yield iter.next();
-                    if (done)
+                    const { value: firstValue, done: firstDone } = yield iter.next();
+                    if (firstDone)
                         // Input was completely empty.
                         return seq_1.iterDone;
                     // Don't await it yet; let it work while we start more threads.
-                    const next = mapper(value);
+                    const next = mapper(firstValue);
                     threads = [];
                     while (threads.length < maxThreadsLength) {
                         const { value, done } = yield iter.next();

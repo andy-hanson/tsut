@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 if (Set.of === undefined) {
     Set.of = (...values) => new Set(values);
 }

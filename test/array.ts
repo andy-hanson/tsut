@@ -4,7 +4,8 @@ import { assertStepsTaken, calls, eq, seqEq, sleepAndDo, throws, tryHalve } from
 
 describe("array", () => {
 	it("empty", () => {
-		throws(() => u.empty.push(1 as never))
+		//TODO: file issue! never[] should work!
+		throws(() => (u.empty as never[]).push(1 as never))
 	})
 
 	calls(u.mapMutate, f => {
@@ -61,7 +62,7 @@ describe("array", () => {
 		it("filter", async () => {
 			const arr = [1, -2, 3, -4]
 			await assertStepsTaken(4, () =>
-				u.asyncArray(arr).filter(sleepAndDo(x => x > 0)))
+				u.asyncArray(arr).filter(sleepAndDo<number, boolean>(x => x > 0)))
 			eq(arr, [1, 3])
 		})
 
@@ -95,7 +96,7 @@ describe("array", () => {
 		it("filter", async () => {
 			const arr = [1, -2, 3, -4]
 			await assertStepsTaken(2, () =>
-				u.parallelArray(arr, 2).filter(sleepAndDo(x => x > 0)))
+				u.parallelArray(arr, 2).filter(sleepAndDo<number, boolean>(x => x > 0)))
 			eq(arr, [1, 3])
 		})
 

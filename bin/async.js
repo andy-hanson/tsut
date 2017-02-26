@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
 Use a callback-style function, returning a Promise.
 For example: `callback(cb => fs.readFile("foo.txt", "utf-8", cb))

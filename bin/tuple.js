@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /** First element of a tuple. */
 function _1st(tuple) {
     return tuple[0];

@@ -65,7 +65,7 @@ Usage:
 	justX.x // works
 	(justX as any).y // Error
 */
-export function picker<T>(keys: PropertyKey[]): (object: T) => T {
+export function picker<T, K extends keyof T>(keys: K[]): (object: T) => Pick<T, K> {
 	const handler = pickingHandler(Set.from(keys))
 	return object => new Proxy(object, handler)
 }
@@ -77,8 +77,7 @@ function pickingHandler(keys: Set<PropertyKey>): ProxyHandler<any> {
 
 	return failingHandler(fail, {
 		has(target, prop): boolean {
-			// TODO: Cast not needed in typescript 2.0.5
-			return keys.has(prop as symbol) && Reflect.has(target, prop as symbol)
+			return keys.has(prop) && Reflect.has(target, prop)
 		},
 		get(target, prop): any {
 			if (!keys.has(prop))
@@ -93,7 +92,7 @@ function pickingHandler(keys: Set<PropertyKey>): ProxyHandler<any> {
 Proxy for an object that does not permit *direct* assignment.
 Any methods that mutate it can still be called.
 */
-export function readonly<T>(object: T): T {
+export function readonly<T>(object: T): Readonly<T> {
 	return new Proxy(object, readonlyHandler)
 }
 

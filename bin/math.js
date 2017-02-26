@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /** `x + 1` */
 function incr(x) {
     return x + 1;

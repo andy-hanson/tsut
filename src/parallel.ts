@@ -44,7 +44,7 @@ export class ParallelSeq<T> {
 
 		return new AsyncSeq<U>(() => {
 			const iter = this.seq.asyncIterator()
-			let threads: Option<Promise<U>[]>
+			let threads: Option<Array<Promise<U>>>
 
 			let inputIsDone = false
 
@@ -53,12 +53,12 @@ export class ParallelSeq<T> {
 					// First iteration
 
 					// Grab the first value to be yielded before starting any threads.
-					const { value, done } = await iter.next()
-					if (done)
+					const { value: firstValue, done: firstDone } = await iter.next()
+					if (firstDone)
 						// Input was completely empty.
 						return iterDone
 					// Don't await it yet; let it work while we start more threads.
-					const next = mapper(value)
+					const next = mapper(firstValue)
 
 					threads = []
 					while (threads.length < maxThreadsLength) {

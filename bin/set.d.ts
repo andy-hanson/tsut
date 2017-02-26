@@ -7,7 +7,7 @@ export declare function intersectionMutate<T>(target: Set<T>, source: Iterable<T
 /** Sets `target = target - source` */
 export declare function differenceMutate<T>(target: Set<T>, source: Iterable<T>): void;
 /** Set containing every element in every argument. */
-export declare function union<T>(...args: Iterable<T>[]): Set<T>;
+export declare function union<T>(...args: Array<Iterable<T>>): Set<T>;
 /**
 Set containing only the elements common to both arguments.
 This operation is faster when at least one argument is a Set.

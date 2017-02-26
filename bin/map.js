@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const array_1 = require("./array");
 const option_1 = require("./option");
 /** Modify the values in a map. */

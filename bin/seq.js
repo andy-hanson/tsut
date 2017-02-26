@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const asyncSeq_1 = require("./asyncSeq");
 const builder_1 = require("./builder");
 const function_1 = require("./function");

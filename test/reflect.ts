@@ -45,7 +45,7 @@ describe("reflect", () => {
 	})
 
 	calls(u.picker, f => {
-		const makeX = f<{ x: number }>(["x"])
+		const makeX = f<{x: number, y: number}, "x">(["x"])
 		const xy = { x: 1, y: 2 }
 		const justX = makeX(xy)
 
@@ -59,7 +59,7 @@ describe("reflect", () => {
 	calls(u.readonly, f => {
 		const p = f({ x: 1 })
 		eq(p.x, 1)
-		throws(() => { p.x = 2 })
+		throws(() => { (p as any).x = 2 })
 		eq(p.x, 1)
 	})
 })

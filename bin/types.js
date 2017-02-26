@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /** Whether it is a primitive boolean. */
 function isBoolean(x) {
     return typeof x === "boolean";

@@ -1,4 +1,4 @@
-import { Builder, Seq, add, iterContinue, iterDone, iterableOfIterator, optional, raise } from "../src"
+import { Builder, Option, Seq, add, iterContinue, iterDone, iterableOfIterator, optional, raise } from "../src"
 import { AsyncIterable, AsyncSeq, asyncIterator, getAsyncIterator } from "../src/asyncSeq"
 import { assert, asyncEq, asyncNats, eq, seqEq, sleepAndDo, throws, throwsAsync, tryHalve } from "./test-util"
 
@@ -180,7 +180,7 @@ describe("asyncSeq", () => {
 
 	it("groupBy & groupBySeq", async () => {
 		const s = AsyncSeq.of("ab", "ac", "bb")
-		const out: [string, string[]][] = [["a", ["ab", "ac"]], ["b", ["bb"]]]
+		const out: Array<[string, string[]]> = [["a", ["ab", "ac"]], ["b", ["bb"]]]
 		eq(await s.groupBy(str => str[0]), Map.from(out))
 		await asyncEq(s.groupBySeq(str => str[0]), out)
 	})
@@ -208,7 +208,7 @@ describe("asyncSeq", () => {
 			[0, 1, 2, 0, 1, 2]))
 
 	it("flatMap", () =>
-		asyncEq(asyncNats.flatMap(sleepAndDo(x => optional(x !== 1, () => [x, x]))), [0, 0, 2, 2]))
+		asyncEq(asyncNats.flatMap(sleepAndDo<number, Option<[number, number]>>(x => optional<[number, number]>(x !== 1, () => [x, x]))), [0, 0, 2, 2]))
 
 	it("concat", () =>
 		asyncEq(asyncNats.concat(undefined, asyncNats), [0, 1, 2, 0, 1, 2]))
@@ -270,8 +270,8 @@ describe("asyncSeq", () => {
 	it("equals", async () => {
 		assert(await asyncNats.equals([0, 1, 2]))
 		assert(!await asyncNats.equals([0, 1]))
-		assert(await asyncNats.equals([10, 11, 12], sleepAndDo((a, b) => a % 10 === b % 10)))
-		assert(!await asyncNats.equals([10, 11, 13], sleepAndDo((a, b) => a % 10 === b % 10)))
+		assert(await asyncNats.equals([10, 11, 12], sleepAndDo<number, number, boolean>((a, b) => a % 10 === b % 10)))
+		assert(!await asyncNats.equals([10, 11, 13], sleepAndDo<number, number, boolean>((a, b) => a % 10 === b % 10)))
 	})
 
 	it("take", async () => {

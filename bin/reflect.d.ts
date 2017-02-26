@@ -39,9 +39,9 @@ Usage:
     justX.x // works
     (justX as any).y // Error
 */
-export declare function picker<T>(keys: PropertyKey[]): (object: T) => T;
+export declare function picker<T, K extends keyof T>(keys: K[]): (object: T) => Pick<T, K>;
 /**
 Proxy for an object that does not permit *direct* assignment.
 Any methods that mutate it can still be called.
 */
-export declare function readonly<T>(object: T): T;
+export declare function readonly<T>(object: T): Readonly<T>;

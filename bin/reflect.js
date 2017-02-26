@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const function_1 = require("./function");
 const seq_1 = require("./seq");
 /**
@@ -78,7 +79,6 @@ function pickingHandler(keys) {
     }
     return failingHandler(fail, {
         has(target, prop) {
-            // TODO: Cast not needed in typescript 2.0.5
             return keys.has(prop) && Reflect.has(target, prop);
         },
         get(target, prop) {

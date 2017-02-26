@@ -2,11 +2,12 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("./math");
 const option_1 = require("./option");
 const seq_1 = require("./seq");
@@ -14,7 +15,7 @@ const seq_1 = require("./seq");
 Empty immutable array.
 Using this instead of a literal array `[]` to avoid allocating memory.
 */
-exports.empty = Object.freeze([]); // TODO: Cast not needed in TypeScript 2.0.5
+exports.empty = Object.freeze([]);
 /**
 Replace each element with the result of calling `getNewValue`.
 If `getNewValue` throws, the inputs will be left in a bad state.
@@ -31,9 +32,9 @@ If `predicate` throws, the array will be left in a bad state.
 */
 function filterMutate(inputs, predicate) {
     let writeIndex = 0;
-    for (let readIndex = 0; readIndex < inputs.length; readIndex++)
-        if (predicate(inputs[readIndex])) {
-            inputs[writeIndex] = inputs[readIndex];
+    for (const input of inputs)
+        if (predicate(input)) {
+            inputs[writeIndex] = input;
             writeIndex++;
         }
     inputs.length = writeIndex;
@@ -45,8 +46,8 @@ If [[tryGetOutput] throws, the array will be left in a bad state.
 */
 function mapDefinedMutate(inputs, tryGetOutput) {
     let writeIndex = 0;
-    for (let readIndex = 0; readIndex < inputs.length; readIndex++) {
-        const output = tryGetOutput(inputs[readIndex]);
+    for (const input of inputs) {
+        const output = tryGetOutput(input);
         if (output !== undefined) {
             inputs[writeIndex] = output;
             writeIndex++;
@@ -105,9 +106,6 @@ For non-mutating utilities use [[AsyncSeq]].
 class AsyncArrayOps {
     constructor(inputs) {
         this.inputs = inputs;
-        // https://github.com/Microsoft/TypeScript/issues/11324
-        // tslint:disable-next-line:no-unused-expression
-        this.inputs;
     }
     /** Asynchronous [[mapMutate]]. */
     map(getNewValue) {
@@ -200,9 +198,7 @@ class ParallelArrayOps {
     }
     /** Parallel [[filterMutate]]. */
     filter(predicate) {
-        return this.mapDefined((input, index) => __awaiter(this, void 0, void 0, function* () {
-            return option_1.optional(yield predicate(input, index), () => input);
-        }));
+        return this.mapDefined((input, index) => __awaiter(this, void 0, void 0, function* () { return option_1.optional(yield predicate(input, index), () => input); }));
     }
     /** Parallel [[mapDefinedMutate]]. */
     mapDefined(tryGetOutput) {

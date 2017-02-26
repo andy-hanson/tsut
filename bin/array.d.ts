@@ -6,7 +6,7 @@ import { Seq } from "./seq";
 Empty immutable array.
 Using this instead of a literal array `[]` to avoid allocating memory.
 */
-export declare const empty: never[];
+export declare const empty: ReadonlyArray<never>;
 /**
 Replace each element with the result of calling `getNewValue`.
 If `getNewValue` throws, the inputs will be left in a bad state.
@@ -77,11 +77,11 @@ export declare class ParallelArrayOps<T> {
 Whether a number is an integer between 0 and array.length.
 Does *not* check for whether there is a "hole" at the index.
 */
-export declare function isValidIndex(inputs: {}[], index: Nat): boolean;
+export declare function isValidIndex(inputs: Array<{}>, index: Nat): boolean;
 /** Throws an error if [[index]] is not a valid index. */
-export declare function checkIndex(inputs: {}[], index: Nat): void;
+export declare function checkIndex(inputs: Array<{}>, index: Nat): void;
 /** Swap two values in an array. */
-export declare function swap(inputs: {}[], firstIndex: Nat, secondIndex: Nat): void;
+export declare function swap(inputs: Array<{}>, firstIndex: Nat, secondIndex: Nat): void;
 /** Initialize a new array by calling [[makeElement]] [[length]] times. */
 export declare function initArray<T>(length: number, makeElement: (index: number) => T): T[];
 /** Asynchronous [[initArray]]. */

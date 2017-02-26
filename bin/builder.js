@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const option_1 = require("./option");
 /** Builds an Array. */
 class ArrayBuilder {
