@@ -46,6 +46,8 @@ export function toPromise<T>(value: Awaitable<T>): Promise<T> {
 	return value instanceof Promise ? value : Promise.resolve(value)
 }
 
+declare function setTimeout(action: () => void, ms: number): void;
+
 /** Promise that takes a given amount of time to be resolved. */
 export function sleep(milliseconds: number): Promise<void> {
 	return new Promise<void>(resolve =>
@@ -66,7 +68,7 @@ export function deferred<T>(): [Deferred<T>, Promise<T>] {
 	// Prophecy has been fulfilled. https://github.com/Microsoft/TypeScript/issues/11463#issuecomment-252469934
 	let resolve: ((value: T) => void) | undefined
 	let reject: ((error: Error) => void) | undefined
-	const promise = new Promise((_resolve, _reject) => {
+	const promise = new Promise<T>((_resolve, _reject) => {
 		resolve = _resolve
 		reject = _reject
 	})

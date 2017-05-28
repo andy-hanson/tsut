@@ -25,14 +25,14 @@
 		"line-count": "node examples/require lineCount"
 	},
 	"devDependencies": {
-		"@types/mocha": "^2.2.39",
-		"codecov": "^1.0.1",
+		"@types/mocha": "^2.2.41",
+		"codecov": "^2.2.0",
 		"istanbul": "1.1.0-alpha.1",
 		"mocha": "^3.1.2",
 		"npm-run-all": "^4.0.2",
-		"ts-node": "^2.1.0",
-		"tslint": "^4.4.2",
-		"typescript": "^2.2.1"
+		"ts-node": "^3.0.4",
+		"tslint": "latest",
+		"typescript": "next"
 	},
 	"files": [
 		"bin"

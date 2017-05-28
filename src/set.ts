@@ -1,3 +1,5 @@
+/// <reference path="shims.ts" />
+
 import { Seq } from "./seq"
 
 /** Converts an iterable to a Set if it isn't one already. */

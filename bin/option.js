@@ -6,6 +6,7 @@ function optionify(nullable) {
 }
 exports.optionify = optionify;
 /** True for any value but `undefined`. */
+//kill?
 function exists(option) {
     return option !== undefined;
 }

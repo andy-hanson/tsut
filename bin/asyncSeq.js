@@ -545,7 +545,7 @@ class AsyncSeq {
             const leftIter = this.asyncIterator();
             const rightIter = getAsyncIterator(other);
             return asyncIterator(() => __awaiter(this, void 0, void 0, function* () {
-                const [{ value: leftValue, done: leftDone }, { value: rightValue, done: rightDone }] = yield Promise.all([yield leftIter.next(), yield rightIter.next()]);
+                const [{ value: leftValue, done: leftDone }, { value: rightValue, done: rightDone }] = yield Promise.all([leftIter.next(), rightIter.next()]);
                 if (leftDone || rightDone)
                     return seq_1.iterDone;
                 return seq_1.iterContinue(option_1.exists(zipper) ? yield zipper(leftValue, rightValue) : [leftValue, rightValue]);

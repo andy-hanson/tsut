@@ -111,7 +111,7 @@ const readonlyHandler: ProxyHandler<any> = (() => {
 	})
 })()
 
-function failingHandler<T>(fail: () => never, otherCases: ProxyHandler<T>): ProxyHandler<T> {
+function failingHandler<T extends object>(fail: () => never, otherCases: ProxyHandler<T>): ProxyHandler<T> {
 	const defaults = {
 		getPrototypeOf: fail,
 		setPrototypeOf: fail,
@@ -135,7 +135,7 @@ function checkProxy<T>(object: T, check: () => void): T {
 }
 
 function checkingHandler(check: () => void): ProxyHandler<any> {
-	function checking<F extends Function>(op: F): F {
+	function checking<F extends Function>(op: F): F { // tslint:disable-line ban-types
 		return before(op, check)
 	}
 

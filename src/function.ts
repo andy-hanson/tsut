@@ -49,7 +49,7 @@ export function partial<T, U, V, W>(f: Fn3<T, U, V, W>, t: T, u: U): Fn1<V, W>
 export function partial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, t: T): Fn3<U, V, W, X>
 export function partial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, t: T, u: U): Fn2<V, W, X>
 export function partial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, t: T, u: U, v: V): Fn1<W, X>
-export function partial(f: Function, ...args: any[]): Function {
+export function partial(f: Function, ...args: any[]): Function { // tslint:disable-line ban-types
 	return (...moreArgs: any[]) => f(...args, ...moreArgs)
 }
 
@@ -63,7 +63,7 @@ export function rpartial<T, U, V, W>(f: Fn3<T, U, V, W>, u: U, v: V): Fn1<T, W>
 export function rpartial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, w: W): Fn3<T, U, V, X>
 export function rpartial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, v: V, w: W): Fn2<T, U, X>
 export function rpartial<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, u: U, v: V, w: W): Fn1<T, X>
-export function rpartial(f: Function, ...args: any[]): Function {
+export function rpartial(f: Function, ...args: any[]): Function { // tslint:disable-line ban-types
 	return (...moreArgs: any[]) => f(...moreArgs, ...args)
 }
 
@@ -98,14 +98,14 @@ Performs several functions successively on a value.
 export function pipe<T, U, V>(start: T, f0: Fn1<T, U>, f1: Fn1<U, V>): V
 export function pipe<T, U, V, W>(start: T, f0: Fn1<T, U>, f1: Fn1<U, V>, f2: Fn1<V, W>): W
 export function pipe<T, U, V, W, X>(start: T, f0: Fn1<T, U>, f1: Fn1<U, V>, f2: Fn1<V, W>, f3: Fn1<W, X>): X
-export function pipe(value: any, ...functions: Function[]): any {
+export function pipe(value: any, ...functions: Function[]): any { // tslint:disable-line ban-types
 	for (const f of functions)
 		value = f(value)
 	return value
 }
 
 /** Function that performs an action before calling a function. */
-export function before<T extends Function>(f: T, doBefore: () => void): T {
+export function before<T extends Function>(f: T, doBefore: () => void): T { // tslint:disable-line ban-types
 	return ((...args: any[]) => {
 		doBefore()
 		return f(...args)
@@ -120,7 +120,7 @@ export function after<T, U>(f: Fn1<T, U>, doAfter: Action<U>): Fn1<T, U>
 export function after<T, U, V>(f: Fn2<T, U, V>, doAfter: Action<V>): Fn2<T, U, V>
 export function after<T, U, V, W>(f: Fn3<T, U, V, W>, doAfter: Action<W>): Fn3<T, U, V, W>
 export function after<T, U, V, W, X>(f: Fn4<T, U, V, W, X>, doAfter: Action<X>): Fn4<T, U, V, W, X>
-export function after<F extends Function>(f: F, doAfter: (res: any) => void): F {
+export function after<F extends Function>(f: F, doAfter: (res: any) => void): F { // tslint:disable-line ban-types
 	return ((...args: any[]) => {
 		const res = f(...args)
 		doAfter(res)

@@ -86,7 +86,7 @@ export class AsyncSeq<T> implements AsyncIterable<T> {
 	/** AsyncSeq with no elements. */
 	static empty = new AsyncSeq<never>(
 		thunk(asyncIterator(thunk(
-			Promise.resolve({ value: undefined, done: true })))))
+			Promise.resolve({ value: undefined as never, done: true })))))
 
 	/**
 	Wraps any iterator.
@@ -186,7 +186,7 @@ export class AsyncSeq<T> implements AsyncIterable<T> {
 
 			return asyncIterator((): Promise<IteratorResult<T>> => {
 				if (queued.length)
-					return Promise.resolve(iterContinue(queued.shift()))
+					return Promise.resolve(iterContinue(queued.shift()!))
 				else {
 					switch (curState.kind) {
 						case StateKind.Going: {
@@ -624,7 +624,7 @@ export class AsyncSeq<T> implements AsyncIterable<T> {
 			const rightIter = getAsyncIterator(other)
 			return asyncIterator(async () => {
 				const [{ value: leftValue, done: leftDone }, { value: rightValue, done: rightDone }] =
-					await Promise.all([await leftIter.next(), await rightIter.next()])
+					await Promise.all([leftIter.next(), rightIter.next()])
 				if (leftDone || rightDone)
 					return iterDone
 				return iterContinue(

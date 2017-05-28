@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
         "target": "es6",
+        "lib": ["esnext"],
         "module" :"commonjs",
+
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": true,

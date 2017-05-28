@@ -19,7 +19,7 @@ export function isSymbol(x: any): x is symbol {
 }
 
 /** Whether it is a function. */
-export function isFunction(x: any): x is Function {
+export function isFunction(x: any): x is Function { // tslint:disable-line ban-types
 	return typeof x === "function"
 }
 
