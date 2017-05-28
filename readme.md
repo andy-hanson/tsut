@@ -12,7 +12,7 @@ but you can use a single import `import * as u from "tsut"` and use any function
 #### Install
 
 ```sh
-npm install --save andy-hanson/tsut # Latest
+npm install --save andy-hanson/tsut#bin # Latest
 npm install --save tsut # Stable
 ```
 
